@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class QueueConsumer {
     Logger log = LoggerFactory.getLogger(QueueConsumer.class);
   
