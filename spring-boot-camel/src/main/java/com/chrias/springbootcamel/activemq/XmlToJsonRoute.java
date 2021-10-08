@@ -8,16 +8,22 @@ import org.apache.camel.spi.DataFormat;
 import org.springframework.stereotype.Component;
 
 @Component
-public class XmlQueueLoggingRoute extends RouteBuilder {
+public class XmlToJsonRoute extends RouteBuilder {
 
-    DataFormat jaxb = new JaxbDataFormat("com.chrias.springbootcamel.model");
+    private DataFormat jaxb;
+
+    public XmlToJsonRoute(JaxbDataFormat jaxbDataFormat) {
+        this.jaxb = jaxbDataFormat;
+    }
 
     @Override
     public void configure() throws Exception {
-        from("activemq:USERS.XML")
+        from("activemq:USERS.XML_TO_JSON")
             .log("Received XML Message Body: ${body}")
             .unmarshal(jaxb)
-            .bean(LoggingBean.class, "logMessage");
+            .bean(LoggingBean.class, "logMessage")
+            .marshal().json()
+            .to("log:com.chrias.springbootcamel.routelog?level=DEBUG");
     }
     
 }

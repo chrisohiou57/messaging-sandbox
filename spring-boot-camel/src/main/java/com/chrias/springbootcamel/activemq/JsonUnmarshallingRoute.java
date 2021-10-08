@@ -7,7 +7,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JsonQueueLoggingRoute extends RouteBuilder {
+public class JsonUnmarshallingRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {

@@ -27,4 +27,12 @@ public class QueueProducer {
         xmlJmsTemplate.convertAndSend("USERS.XML", new SomeMessage(text));
     }
 
+    public void sendXmlMessage(String text, String queueDestination) {
+        xmlJmsTemplate.convertAndSend(queueDestination, new SomeMessage(text));
+    }
+
+    public void sendJsonMessage(String text, String queueDestination) {
+        jsonJmsTemplate.convertAndSend(queueDestination, new SomeMessage(text));
+    }
+
 }
